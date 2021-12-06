@@ -11,11 +11,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView>
-        <NavigationContainer>
-          <HomeStack />
-        </NavigationContainer>
-      </SafeAreaView>
+      <NavigationContainer>
+        <HomeStack />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

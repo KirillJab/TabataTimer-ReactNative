@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
+  Dimensions,
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
   Text,
   View,
+  Keyboard,
 } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import CalmDown from "../components/CalmDown";
@@ -24,6 +26,24 @@ const Tabata = () => {
   const [setsCount, setSetsCount] = useState("1");
   const [restBetweenTime, setRestBetweenTime] = useState("0");
   const [calmDownTime, setCalmDownTime] = useState("0");
+
+  const [workOutDescription, setWorkOutDescription] = useState();
+  const [restDescription, setRestDescription] = useState();
+
+  const [showFooter, setShowFooter] = useState(true);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setShowFooter(false);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setShowFooter(true);
+    });
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
 
   const handleWarmUpTimeChange = (value) => {
     setWarmUpTime(validateTimeInput(value, 120));
@@ -51,8 +71,18 @@ const Tabata = () => {
       <ScrollView>
         <View style={styles.container}>
           <WarmUp time={warmUpTime} onChangeText={handleWarmUpTimeChange} />
-          <WorkOut time={workOutTime} onChangeText={handleWorkOutTimeChange} />
-          <Rest time={restTime} onChangeText={handleRestTimeChange} />
+          <WorkOut
+            time={workOutTime}
+            onChangeText={handleWorkOutTimeChange}
+            description={workOutDescription}
+            onDescriptionChange={setWorkOutDescription}
+          />
+          <Rest
+            time={restTime}
+            onChangeText={handleRestTimeChange}
+            description={restDescription}
+            onDescriptionChange={setRestDescription}
+          />
           <Cycles time={cyclesCount} onChangeText={handleCyclesCountChange} />
           <Sets time={setsCount} onChangeText={handleSetsCountChange} />
           <RestBetween
@@ -65,7 +95,7 @@ const Tabata = () => {
           />
         </View>
       </ScrollView>
-      <KeyboardAvoidingView behavior="height">
+      {showFooter && (
         <View style={styles.footer}>
           <Button
             type="solid"
@@ -98,7 +128,7 @@ const Tabata = () => {
             icon={{ type: "entypo", name: "plus", size: 45, color: "white" }}
           />
         </View>
-      </KeyboardAvoidingView>
+      )}
     </>
   );
 };

@@ -24,6 +24,8 @@ const WorkOut = (props) => {
           inputStyle={{ textAlign: "center" }}
           inputContainerStyle={{ borderBottomWidth: 0, paddingVertical: 0 }}
           errorStyle={{ height: 0 }}
+          value={props.description}
+          onChangeText={props.onDescriptionChange}
         />
         <TimeInput onChangeText={props.onChangeText} time={props.time} />
       </View>

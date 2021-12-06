@@ -1,11 +1,16 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet } from "react-native";
 import { Input } from "react-native-elements";
 
 const TimeInput = (props) => {
   const interval = useRef(null);
-  const decreaseAmount = useRef(null);
-  const timeInterval = 70;
+  const decreaseAmount = useRef(1);
+  const timeInterval = 100;
+
+  useEffect(() => {
+    return clearInterval(interval.current);
+  }, []);
+
   return (
     <Input
       leftIcon={{
