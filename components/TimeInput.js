@@ -5,7 +5,7 @@ import { Input } from "react-native-elements";
 const TimeInput = (props) => {
   const interval = useRef(null);
   const decreaseAmount = useRef(1);
-  const timeInterval = 100;
+  const timeInterval = 60;
 
   useEffect(() => {
     return clearInterval(interval.current);

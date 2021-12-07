@@ -18,7 +18,7 @@ import WarmUp from "../components/WarmUp";
 import WorkOut from "../components/WorkOut";
 import validateTimeInput from "../utils/ValidateTimeInput";
 
-const Tabata = () => {
+const Tabata = (props) => {
   const [warmUpTime, setWarmUpTime] = useState("10");
   const [workOutTime, setWorkOutTime] = useState("20");
   const [restTime, setRestTime] = useState("10");
@@ -107,6 +107,7 @@ const Tabata = () => {
               size: 28,
               color: "white",
             }}
+            onPress={() => props.navigation.navigate("Home")}
           />
           <Button
             type="solid"

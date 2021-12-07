@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Input, Icon } from "react-native-elements";
-import theme from "../theme";
-import styles from "./styles/Styles";
+
+import styles from "./styles/TabataStyles";
 import TimeInput from "./TimeInput";
 
 const Cycles = (props) => {

@@ -8,8 +8,8 @@ const Stack = createStackNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="Home" component={Home} /> */}
       <Stack.Screen name="Tabata" component={Tabata} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };
